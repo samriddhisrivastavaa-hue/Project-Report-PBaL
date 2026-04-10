@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SMS Organizer Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2>📩 SMS Organizer</h2>
+            <ul>
+                <li onclick="filterSMS('all')">All</li>
+                <li onclick="filterSMS('personal')">Personal</li>
+                <li onclick="filterSMS('otp')">OTP</li>
+                <li onclick="filterSMS('transaction')">Transaction</li>
+                <li onclick="filterSMS('spam')">Spam</li>
+            </ul>
+        </aside>
+
+        <main class="main">
+            <h1>Dashboard</h1>
+
+            <!-- LIVE INPUT -->
+            <div class="input-box">
+                <input type="text" id="messageInput" placeholder="Type any SMS here...">
+                <button onclick="addSMS()">Add SMS</button>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats">
+                <div class="card">Total<br><span id="totalCount">0</span></div>
+                <div class="card">OTP<br><span id="otpCount">0</span></div>
+                <div class="card">Txn<br><span id="txnCount">0</span></div>
+                <div class="card">Spam<br><span id="spamCount">0</span></div>
+            </div>
+
+            <!-- SMS LIST -->
+            <div id="smsList"></div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
