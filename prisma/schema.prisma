@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id          Int       @id @default(autoincrement())
+  email       String?   @unique
+  phoneNumber String?   @unique
+   password    String
+  createdAt   DateTime  @default(now())
+  messages    Message[]
+}
+
+enum Category {
+  personal
+  promotional
+  otp
+  transaction
+  service
+}
+model Message {
+  id          Int       @id @default(autoincrement())
+  sender      String
+  body        String
+  source      String    // "sms" ya "email"
+    category    Category  @default(personal)
+  isArchived  Boolean   @default(false)
+  isDeleted   Boolean   @default(false)
+  isPhishing  Boolean   @default(false)
+  receivedAt  DateTime  @default(now())
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+}
