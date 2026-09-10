@@ -6,10 +6,13 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const prisma = new PrismaClient();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const JWT_SECRET = 'sms-organizer-secret-key-2026';
 
 app.use(express.json());
+// Simple web demo (public/index.html + public/app.js) served from the same backend -
+// so the deployed link shows a live, working UI with real classification, not just an API.
+app.use(express.static('public'));
 
 function verifyToken(req, res, next) {
   const authHeader = req.headers['authorization'];
